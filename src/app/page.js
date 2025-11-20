@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Play, Pause, Disc, SkipForward, Trophy, Zap, Activity, Globe, CheckCircle, X, Download, QrCode } from 'lucide-react';
 
-// --- 1. COMPONENTE PRELOADER ---
+// --- 1. COMPONENTE PRELOADER ----
 const Preloader = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
 
