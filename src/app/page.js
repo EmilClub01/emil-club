@@ -12,6 +12,9 @@ import Leaderboard from './components/Leaderboard';
 import MissionControl from './components/MissionControl';
 import Player from './components/Player';
 
+import SocialProof from './components/SocialProof';
+import FinalCTA from './components/FinalCTA';
+
 export default function EmilClubPage() {
   const [loading, setLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -35,10 +38,10 @@ export default function EmilClubPage() {
 
   return (
     <div className="bg-[#050505] min-h-screen text-white font-sans overflow-x-hidden pb-24 selection:bg-[#ccff00] selection:text-black">
-      
+
       {/* Background Noise */}
       <div className="fixed inset-0 z-20 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }}></div>
-      
+
       {/* Cursor */}
       <motion.div className="fixed w-6 h-6 border border-[#ccff00] rounded-full z-[100] pointer-events-none mix-blend-difference hidden md:block" animate={{ x: mousePosition.x - 12, y: mousePosition.y - 12 }} transition={{ type: "spring", mass: 0.1 }} />
 
@@ -48,16 +51,22 @@ export default function EmilClubPage() {
       {/* 2. MARQUEE SECTION */}
       <Marquee />
 
-      {/* 3. BENTO GRID */}
+      {/* 3. BENTO GRID (BENEFICIOS) */}
       <BentoGrid onJoin={scrollToForm} />
 
       {/* 4. LEADERBOARD */}
       <Leaderboard onJoin={scrollToForm} />
 
-      {/* 5. MISSION CONTROL (EL CEREBRO) */}
+      {/* 5. SOCIAL PROOF (NUEVO BLOQUE 4) */}
+      <SocialProof />
+
+      {/* 6. MISSION CONTROL (EL CEREBRO) */}
       <MissionControl />
 
-      {/* 6. PLAYER */}
+      {/* 7. FINAL CTA (NUEVO BLOQUE 5) */}
+      <FinalCTA onJoin={scrollToForm} />
+
+      {/* 8. PLAYER */}
       <Player isPlaying={isPlaying} togglePlay={() => setIsPlaying(!isPlaying)} />
 
       <footer className="text-center py-10 text-gray-600 text-xs font-mono border-t border-[#111] mt-20">EMIL CLUB SYSTEM V6.0 // PRODUCTION READY</footer>
