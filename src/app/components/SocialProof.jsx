@@ -12,7 +12,7 @@ export default function SocialProof() {
                         Desde <span className="text-[#ccff00]">Latinoamérica</span> <br /> al Mundo
                     </h2>
                     <p className="text-gray-400 max-w-2xl mx-auto">
-                        La tribu no tiene fronteras. Conectamos a los verdaderos fans en una sola frecuencia.
+                        Emil Club no tiene fronteras. Conectamos a los verdaderos fans en una sola frecuencia.
                     </p>
                 </div>
 

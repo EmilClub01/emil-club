@@ -2,8 +2,9 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { QrCode, Download, CheckCircle, Loader2 } from 'lucide-react';
+import { QrCode, Download, CheckCircle, Loader2, Share2 } from 'lucide-react';
 import html2canvas from 'html2canvas';
+import { supabase } from '../lib/supabaseClient';
 
 // --- COMPONENTE SVG DE CÓDIGO DE BARRAS ---
 const BarcodeSVG = () => (
@@ -217,7 +218,10 @@ const MemberCardDisplay = ({ data, cardRef, avatarSrc }) => {
             <BarcodeSVG />
             <p style={{ fontSize: '10px', color: '#444', fontFamily: 'monospace', marginTop: '4px', margin: 0 }}>ACCESS GRANTED // SECURE</p>
           </div>
-          <QrCode color="white" size={48} style={{ opacity: 0.8 }} />
+          <div className="text-right">
+            <p style={{ fontSize: '10px', color: '#666', fontFamily: 'monospace', margin: 0 }}>XP</p>
+            <p style={{ fontSize: '18px', color: '#ccff00', fontWeight: 'bold', margin: 0 }}>{data.xp || 500}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -229,6 +233,8 @@ export default function IDCard({ data }) {
   const cardRef = useRef(null);
   const [downloading, setDownloading] = useState(false);
   const [avatarBase64, setAvatarBase64] = useState(null);
+  const [xp, setXp] = useState(data.xp || 500);
+  const [shared, setShared] = useState(false);
 
   useEffect(() => {
     const generateBase64Avatar = async () => {
@@ -299,12 +305,50 @@ export default function IDCard({ data }) {
     setDownloading(false);
   };
 
+  const handleShare = async () => {
+    if (shared) return;
+
+    // 1. Simular compartir (en un caso real abriría ventana de Twitter/FB)
+    const text = `¡Me he unido a Emil Club! Mi nombre clave es ${data.name}. Únete aquí: https://emil.club`;
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Emil Club ID',
+          text: text,
+          url: 'https://emil.club',
+        });
+      } catch (err) {
+        console.log('Error compartiendo:', err);
+      }
+    } else {
+      // Fallback: copiar al portapapeles
+      navigator.clipboard.writeText(text);
+      alert("Enlace copiado al portapapeles!");
+    }
+
+    // 2. Dar XP extra
+    try {
+      const { error } = await supabase
+        .from('fans')
+        .update({ xp: xp + 100 })
+        .eq('email', data.email);
+
+      if (!error) {
+        setXp(prev => prev + 100);
+        setShared(true);
+      }
+    } catch (err) {
+      console.error("Error actualizando XP:", err);
+    }
+  };
+
   return (
     <div className="text-center w-full flex flex-col items-center">
       <div className="mb-6">
         <CheckCircle className="w-16 h-16 text-[#ccff00] mx-auto mb-4" />
         <h3 className="text-3xl font-black uppercase text-white">Acceso Autorizado</h3>
-        <p className="text-gray-400 text-sm">Bienvenido a la tribu, Agente.</p>
+        <p className="text-gray-400 text-sm">Bienvenido a Emil Club, Agente.</p>
+        <p className="text-[#ccff00] font-mono text-xs mt-2">XP ACTUAL: {xp}</p>
       </div>
 
       <motion.div
@@ -314,17 +358,28 @@ export default function IDCard({ data }) {
         transition={{ type: "spring", bounce: 0.4, duration: 1 }}
         style={{ perspective: 1000 }}
       >
-        <MemberCardDisplay data={data} cardRef={cardRef} avatarSrc={avatarBase64} />
+        <MemberCardDisplay data={{ ...data, xp }} cardRef={cardRef} avatarSrc={avatarBase64} />
       </motion.div>
 
-      <button
-        onClick={handleDownload}
-        disabled={downloading || !avatarBase64}
-        className="mt-8 flex items-center gap-2 mx-auto bg-[#ccff00] text-black px-6 py-3 font-bold rounded-full hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {downloading ? <Loader2 className="animate-spin" /> : <Download size={20} />}
-        {downloading ? "GENERANDO..." : "DESCARGAR ID"}
-      </button>
+      <div className="flex gap-4 mt-8">
+        <button
+          onClick={handleDownload}
+          disabled={downloading || !avatarBase64}
+          className="flex items-center gap-2 bg-[#ccff00] text-black px-6 py-3 font-bold rounded-full hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {downloading ? <Loader2 className="animate-spin" /> : <Download size={20} />}
+          {downloading ? "GENERANDO..." : "DESCARGAR ID"}
+        </button>
+
+        <button
+          onClick={handleShare}
+          disabled={shared}
+          className={`flex items-center gap-2 px-6 py-3 font-bold rounded-full border transition-colors ${shared ? 'bg-green-900/20 border-green-500 text-green-500' : 'border-white/20 hover:bg-white/10 text-white'}`}
+        >
+          {shared ? <CheckCircle size={20} /> : <Share2 size={20} />}
+          {shared ? "+100 XP GANADOS" : "COMPARTIR (+100 XP)"}
+        </button>
+      </div>
     </div>
   );
 }
