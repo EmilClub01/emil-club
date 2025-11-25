@@ -142,7 +142,7 @@ export default function MissionControl() {
                     <p className="text-gray-400 font-mono text-sm">COMPLETA TU REGISTRO PARA ACCEDER AL SISTEMA.</p>
                 </div>
 
-                <div className="glass-panel p-8 md:p-12 rounded-2xl shadow-2xl min-h-[500px] relative overflow-hidden bg-black/80 backdrop-blur-xl border border-white/10">
+                <div className="p-8 md:p-12 rounded-2xl shadow-2xl min-h-[500px] relative overflow-hidden bg-black/90 backdrop-blur-xl border border-white/20">
                     {/* Decorative corner accents */}
                     <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#ccff00]"></div>
                     <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#ccff00]"></div>
