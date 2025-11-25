@@ -9,6 +9,7 @@ import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import BentoGrid from './components/BentoGrid';
 import Leaderboard from './components/Leaderboard';
+import SpotifyEmbed from './components/SpotifyEmbed';
 import MissionControl from './components/MissionControl';
 import Player from './components/Player';
 
@@ -56,6 +57,9 @@ export default function EmilClubPage() {
 
       {/* 4. LEADERBOARD */}
       <Leaderboard onJoin={scrollToForm} />
+
+      {/* 4.5 SPOTIFY EMBED */}
+      <SpotifyEmbed />
 
       {/* 5. SOCIAL PROOF (NUEVO BLOQUE 4) */}
       <SocialProof />

@@ -19,7 +19,8 @@ export default function Leaderboard({ onJoin }) {
                 if (error) throw error;
                 setLeaders(data || []);
             } catch (error) {
-                console.error("Error fetching leaderboard:", error);
+                console.error("Error fetching leaderboard:", JSON.stringify(error, null, 2));
+                console.log("Supabase error details:", error);
             } finally {
                 setLoading(false);
             }
