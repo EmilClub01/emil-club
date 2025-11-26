@@ -38,9 +38,8 @@ export default function SpotifyEmbed() {
                             frameBorder="0"
                             allowFullScreen
                             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                            loading="lazy"
                             title="Spotify Embed"
-                            className="w-full block"
+                            className="w-full h-[352px] block"
                         ></iframe>
                     </div>
                 </div>
