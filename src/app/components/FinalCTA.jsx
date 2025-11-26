@@ -10,7 +10,7 @@ export default function FinalCTA({ onJoin }) {
 
             <div className="relative z-10 max-w-4xl mx-auto">
                 <div className="inline-block mb-6 px-4 py-1 border border-[#ccff00] rounded-full bg-black/50 backdrop-blur-sm">
-                    <span className="text-[#ccff00] text-xs font-mono font-bold tracking-[0.2em] animate-pulse">SISTEMA DE RECLUTAMIENTO ACTIVO</span>
+                    <span className="text-[#ccff00] text-xs font-mono font-bold tracking-[0.2em] animate-pulse">SISTEMA DE INSCRIPCIÓN ACTIVO</span>
                 </div>
 
                 <h2 className="text-6xl md:text-9xl font-black uppercase italic tracking-tighter mb-8 text-white leading-[0.85] px-4 py-2">
@@ -18,7 +18,7 @@ export default function FinalCTA({ onJoin }) {
                 </h2>
 
                 <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto font-light">
-                    El acceso es gratuito por tiempo limitado. Asegura tu <span className="text-white font-bold">ID de Agente</span> antes de que cerremos las puertas.
+                    Plataforma oficial de inscripción y gestión de fans.
                 </p>
 
                 <button

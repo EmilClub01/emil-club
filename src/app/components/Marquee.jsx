@@ -12,7 +12,7 @@ export default function Marquee() {
       >
         {[...Array(8)].map((_, i) => (
           <span key={i} className="text-4xl font-black text-black px-8">
-            JOIN THE TRIBE +++ ACCESS GRANTED +++ NO FAKE LOVE +++
+            Únete a la CAUSA +++ Acceso GRATIS +++ Piola de Flow Remix +++
           </span>
         ))}
       </motion.div>

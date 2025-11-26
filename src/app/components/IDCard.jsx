@@ -2,9 +2,8 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { QrCode, Download, CheckCircle, Loader2, Share2 } from 'lucide-react';
+import { Download, CheckCircle, Loader2, Share2 } from 'lucide-react';
 import html2canvas from 'html2canvas';
-import { supabase } from '../lib/supabaseClient';
 
 // --- COMPONENTE SVG DE CÓDIGO DE BARRAS ---
 const BarcodeSVG = () => (
@@ -159,7 +158,7 @@ const MemberCardDisplay = ({ data, cardRef, avatarSrc }) => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '30px' }}>
           <div style={styles.tagContainer}>
             {/* ID único para manipularlo al clonar */}
-            <span id="export-text-agent" style={styles.tagText}>OFFICIAL AGENT</span>
+            <span id="export-text-agent" style={styles.tagText}>Official Fan</span>
           </div>
           <div style={{ textAlign: 'right' }}>
             <h3 style={styles.headerTitle}>EMIL</h3>
@@ -219,8 +218,8 @@ const MemberCardDisplay = ({ data, cardRef, avatarSrc }) => {
             <p style={{ fontSize: '10px', color: '#444', fontFamily: 'monospace', marginTop: '4px', margin: 0 }}>ACCESS GRANTED // SECURE</p>
           </div>
           <div className="text-right">
-            <p style={{ fontSize: '10px', color: '#666', fontFamily: 'monospace', margin: 0 }}>XP</p>
-            <p style={{ fontSize: '18px', color: '#ccff00', fontWeight: 'bold', margin: 0 }}>{data.xp || 500}</p>
+            <p style={{ fontSize: '10px', color: '#666', fontFamily: 'monospace', margin: 0 }}>SINCE</p>
+            <p style={{ fontSize: '18px', color: '#ccff00', fontWeight: 'bold', margin: 0 }}>{data.sinceYear || new Date().getFullYear()}</p>
           </div>
         </div>
       </div>
@@ -233,8 +232,6 @@ export default function IDCard({ data }) {
   const cardRef = useRef(null);
   const [downloading, setDownloading] = useState(false);
   const [avatarBase64, setAvatarBase64] = useState(null);
-  const [xp, setXp] = useState(data.xp || 500);
-  const [shared, setShared] = useState(false);
 
   useEffect(() => {
     const generateBase64Avatar = async () => {
@@ -306,8 +303,6 @@ export default function IDCard({ data }) {
   };
 
   const handleShare = async () => {
-    if (shared) return;
-
     // 1. Simular compartir (en un caso real abriría ventana de Twitter/FB)
     const text = `¡Me he unido a Emil Club! Mi nombre clave es ${data.name}. Únete aquí: https://emil.club`;
     if (navigator.share) {
@@ -325,21 +320,6 @@ export default function IDCard({ data }) {
       navigator.clipboard.writeText(text);
       alert("Enlace copiado al portapapeles!");
     }
-
-    // 2. Dar XP extra
-    try {
-      const { error } = await supabase
-        .from('fans')
-        .update({ xp: xp + 100 })
-        .eq('email', data.email);
-
-      if (!error) {
-        setXp(prev => prev + 100);
-        setShared(true);
-      }
-    } catch (err) {
-      console.error("Error actualizando XP:", err);
-    }
   };
 
   return (
@@ -347,8 +327,8 @@ export default function IDCard({ data }) {
       <div className="mb-6">
         <CheckCircle className="w-16 h-16 text-[#ccff00] mx-auto mb-4" />
         <h3 className="text-3xl font-black uppercase text-white">Acceso Autorizado</h3>
-        <p className="text-gray-400 text-sm">Bienvenido a Emil Club, Agente.</p>
-        <p className="text-[#ccff00] font-mono text-xs mt-2">XP ACTUAL: {xp}</p>
+        <p className="text-gray-400 text-sm">Bienvenido a Emil Club.</p>
+        <p className="text-[#ccff00] font-mono text-xs mt-2">MIEMBRO OFICIAL</p>
       </div>
 
       <motion.div
@@ -358,7 +338,7 @@ export default function IDCard({ data }) {
         transition={{ type: "spring", bounce: 0.4, duration: 1 }}
         style={{ perspective: 1000 }}
       >
-        <MemberCardDisplay data={{ ...data, xp }} cardRef={cardRef} avatarSrc={avatarBase64} />
+        <MemberCardDisplay data={data} cardRef={cardRef} avatarSrc={avatarBase64} />
       </motion.div>
 
       <div className="flex gap-4 mt-8">
@@ -373,11 +353,10 @@ export default function IDCard({ data }) {
 
         <button
           onClick={handleShare}
-          disabled={shared}
-          className={`flex items-center gap-2 px-6 py-3 font-bold rounded-full border transition-colors ${shared ? 'bg-green-900/20 border-green-500 text-green-500' : 'border-white/20 hover:bg-white/10 text-white'}`}
+          className="flex items-center gap-2 px-6 py-3 font-bold rounded-full border transition-colors border-white/20 hover:bg-white/10 text-white"
         >
-          {shared ? <CheckCircle size={20} /> : <Share2 size={20} />}
-          {shared ? "+100 XP GANADOS" : "COMPARTIR (+100 XP)"}
+          <Share2 size={20} />
+          COMPARTIR
         </button>
       </div>
     </div>

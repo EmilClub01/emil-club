@@ -2,9 +2,8 @@
 
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Play, Pause } from 'lucide-react';
 
-export default function Hero({ isPlaying, setIsPlaying, onScrollToForm }) {
+export default function Hero({ onScrollToForm }) {
   const { scrollYProgress } = useScroll();
   const yHero = useTransform(scrollYProgress, [0, 1], [0, 200]);
 
@@ -41,32 +40,20 @@ export default function Hero({ isPlaying, setIsPlaying, onScrollToForm }) {
             <span className="w-2 h-2 bg-[#ccff00] rounded-full animate-ping"></span> SYSTEM ONLINE V2.0
           </div>
           <h2 className="text-6xl md:text-8xl font-black uppercase leading-[0.9] tracking-tight">
-            Rompe <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600" style={{ WebkitTextStroke: "1px white" }}>La Norma</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600" style={{ WebkitTextStroke: "1px white" }}>¡Disfrútalo</span> <br />
+            <span className="text-[#ccff00] drop-shadow-[0_0_20px_rgba(204,255,0,0.5)]">con flow!</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-lg font-light">
-            Únete a Emil Club. Accede a contenido encriptado, preventas exclusivas y sube de rango en el leaderboard global.
+            Aquí podrás vivir experiencias exclusivas, ganar premios y compartir tus sueños junto a EMIL.
           </p>
 
           <div className="flex flex-col md:flex-row gap-4 pt-4">
             <button
               onClick={onScrollToForm}
-              className="bg-[#ccff00] text-black px-8 py-4 font-bold text-lg hover:bg-[#b3e600] hover:scale-105 hover:shadow-[0_0_30px_rgba(204,255,0,0.6)] transition-all duration-300 clip-path-slant"
+              className="bg-[#ccff00] text-black px-10 py-5 font-black text-xl hover:bg-[#b3e600] hover:scale-110 hover:shadow-[0_0_50px_rgba(204,255,0,0.8)] transition-all duration-300 clip-path-slant animate-pulse"
             >
-              UNIRSE AHORA
+              ¡Únete aquí!
             </button>
-            <div className="relative group">
-              <div className="absolute -top-3 -right-2 bg-[#ccff00] text-black text-[10px] font-bold px-2 py-0.5 rounded-full animate-bounce z-20 shadow-[0_0_10px_#ccff00]">
-                +50 XP DIARIOS
-              </div>
-              <button
-                onClick={() => setIsPlaying(!isPlaying)}
-                className="border border-white/30 px-8 py-4 font-bold text-lg hover:bg-white hover:text-black hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all duration-300 flex items-center gap-2 backdrop-blur-sm bg-black/20 relative z-10"
-              >
-                {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-                {isPlaying ? "PAUSA" : "PLAY DEMO"}
-              </button>
-            </div>
           </div>
         </div>
 
@@ -81,11 +68,9 @@ export default function Hero({ isPlaying, setIsPlaying, onScrollToForm }) {
             className="w-full max-w-2xl object-contain relative z-10 drop-shadow-[0_0_20px_rgba(204,255,0,0.1)]"
             animate={{
               y: [0, -20, 0],
-              rotate: isPlaying ? 360 : 0
             }}
             transition={{
               y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-              rotate: { duration: 20, repeat: Infinity, ease: "linear", playState: isPlaying ? "running" : "paused" }
             }}
             whileHover={{ scale: 1.05, dropShadow: "0 0 40px rgba(204,255,0,0.6)" }}
           />

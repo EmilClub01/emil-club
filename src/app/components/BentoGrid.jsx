@@ -17,10 +17,10 @@ export default function BentoGrid({ onJoin }) {
 
                 <div className="bg-[#0a0a0a] border border-white/10 p-10 flex flex-col justify-center">
                     <h3 className="text-5xl font-black uppercase leading-none mb-4">
-                        Más que <br /><span className="text-[#ccff00]">Música.</span>
+                        MÁS QUE <br /><span className="text-[#ccff00]">UN CLUB.</span>
                     </h3>
                     <p className="text-gray-400 text-sm">
-                        Únete al círculo interno. Acceso a contenido raw, preventas exclusivas y una comunidad que entiende el código.
+                        La idea es que podamos compartir juntos experiencias divertidas, donde podamos conocernos más; que disfrutes mi música de una manera especial y juntos impulsemos nuestros sueños.
                     </p>
                 </div>
 
@@ -38,11 +38,11 @@ export default function BentoGrid({ onJoin }) {
                 <div className="bg-[#ccff00] text-black p-8 flex flex-col justify-between">
                     <h3 className="text-3xl font-black uppercase">Tu Acceso</h3>
                     <ul className="space-y-3 font-bold font-mono text-xs">
-                        <li className="flex items-center gap-2 border-b border-black/20 pb-2"><Play size={10} fill="black" /> PREVENTA + ACCESO ANTICIPADO</li>
-                        <li className="flex items-center gap-2 border-b border-black/20 pb-2"><Play size={10} fill="black" /> CONTENIDO EXCLUSIVO DETRÁS DE CÁMARAS</li>
-                        <li className="flex items-center gap-2 border-b border-black/20 pb-2"><Play size={10} fill="black" /> SORTEOS MEET & GREET + MERCH</li>
-                        <li className="flex items-center gap-2 border-b border-black/20 pb-2"><Play size={10} fill="black" /> COMUNIDAD GLOBAL + FOROS PRIVADOS</li>
-                        <li className="flex items-center gap-2 border-b border-black/20 pb-2"><Play size={10} fill="black" /> NOTICIAS ANTICIPADAS (LATAM)</li>
+                        <li className="flex items-center gap-2 border-b border-black/20 pb-2"><Play size={10} fill="black" /> EXPERIENCIAS EXCLUSIVAS CON EMIL</li>
+                        <li className="flex items-center gap-2 border-b border-black/20 pb-2"><Play size={10} fill="black" /> PREMIOS SUEÑO ANUALES</li>
+                        <li className="flex items-center gap-2 border-b border-black/20 pb-2"><Play size={10} fill="black" /> SORTEOS MENSUALES PACKS Y MEGA PACKS EMIL</li>
+                        <li className="flex items-center gap-2 border-b border-black/20 pb-2"><Play size={10} fill="black" /> ACCESOS VIP Y MEET & GREAT</li>
+                        <li className="flex items-center gap-2 border-b border-black/20 pb-2"><Play size={10} fill="black" /> ARTÍCULOS EXCLUSIVOS Y MUCHO MÁS</li>
                     </ul>
                     <button onClick={onJoin} className="bg-black text-white py-3 rounded-full text-sm font-bold hover:bg-white hover:text-black transition-colors mt-4">
                         INICIAR REGISTRO &rarr;

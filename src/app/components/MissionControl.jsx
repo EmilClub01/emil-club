@@ -110,7 +110,7 @@ export default function MissionControl() {
                         contact_preference: userData.contactPreference,
                         social_preference: userData.socialPreference,
                         mission_preferences: userData.missionPreferences,
-                        xp: 500
+                        xp: 0
                     }
                 ]);
 
@@ -118,7 +118,7 @@ export default function MissionControl() {
 
             // 2. Si todo sale bien, guardamos en localStorage
             localStorage.setItem('emil_user_email', userData.email);
-            setUserData({ ...userData, xp: 500 });
+            setUserData({ ...userData, xp: 0 });
             setFormStep(5); // Ir a ID Card (Final)
 
         } catch (error) {
@@ -136,7 +136,9 @@ export default function MissionControl() {
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-transparent to-black"></div>
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="max-w-3xl mx-auto">
+                <div className="max-w-3xl mx-auto relative">
+                    {/* Green Glow Effect */}
+                    <div className="absolute inset-0 bg-[#ccff00] blur-[150px] opacity-20 rounded-full pointer-events-none"></div>
                     <AnimatePresence mode="wait">
                         {formStep === 5 ? (
                             // --- FASE FINAL: ID CARD ---
@@ -166,7 +168,7 @@ export default function MissionControl() {
                                         {/* Nombre y Email */}
                                         <div className="grid md:grid-cols-2 gap-6">
                                             <div className="group">
-                                                <label className="text-xs text-[#ccff00] font-mono mb-2 block">NOMBRE CLAVE</label>
+                                                <label className="text-xs text-[#ccff00] font-mono mb-2 block">NOMBRE COMPLETO</label>
                                                 <input type="text" name="name" value={userData.name} onChange={handleInputChange} placeholder="Tu nombre" className="w-full bg-transparent border-b border-[#333] py-3 text-xl focus:border-[#ccff00] focus:shadow-[0_10px_20px_-10px_rgba(204,255,0,0.2)] focus:outline-none transition-all text-white placeholder-gray-700" />
                                             </div>
                                             <div className="group">
@@ -256,7 +258,7 @@ export default function MissionControl() {
                                         <h3 className="text-3xl font-bold uppercase italic">Consentimiento</h3>
                                         <div className="max-w-md mx-auto">
                                             <p className="text-lg text-gray-300 mb-8 leading-relaxed font-light">
-                                                SI ERES MENOR DE EDAD, DECLARAS QUE TIENES EL CONCENTIMIENTO DE TUS PADRES O APODERADO LEGAL PARA SER PARTE DE ESTE CLUB.
+                                                Soy mayor de edad (+ 18 años) y autorizo el tratamiento de mis datos personales únicamente para mi participación en las actividades de EMIL CLUB.
                                             </p>
 
                                             <div className="flex gap-4 justify-center mb-6">
@@ -275,7 +277,7 @@ export default function MissionControl() {
                                             </div>
 
                                             <p className="text-xs text-gray-500 font-mono mt-8">
-                                                * Te llegará un correo para que tu apoderado firme el consentimiento.
+
                                             </p>
 
                                             {showConsentWarning && (
@@ -345,8 +347,8 @@ export default function MissionControl() {
                                 {/* PASO 4: MISIÓN */}
                                 {formStep === 4 && (
                                     <motion.div key="step4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
-                                        <h3 className="text-3xl font-bold uppercase italic">4. Misión</h3>
-                                        <p className="text-gray-400 text-sm font-mono">SELECCIONA EN ORDEN DE IMPORTANCIA:</p>
+                                        <h3 className="text-3xl font-bold uppercase italic">Importante</h3>
+                                        <p className="text-gray-400 text-sm font-mono">¿Qué experiencia te gustaría disfrutar? (Selecciona en orden de importancia):</p>
                                         <div className="grid grid-cols-1 gap-3">
                                             {[
                                                 'CONOCER A EMIL',

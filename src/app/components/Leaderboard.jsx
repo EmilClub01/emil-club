@@ -51,9 +51,9 @@ export default function Leaderboard({ onJoin }) {
                 <div>
                     <h3 className="text-4xl font-black uppercase flex items-center gap-3 tracking-tighter">
                         <Trophy className="text-[#ccff00] drop-shadow-[0_0_10px_rgba(204,255,0,0.8)]" size={40} />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Leaderboard</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">SORTEO DEL MES</span>
                     </h3>
-                    <p className="text-gray-500 font-mono text-sm">TOP AGENTES ACTIVOS - ACTUALIZACIÓN EN TIEMPO REAL</p>
+                    <p className="text-gray-500 font-mono text-sm">Ganadores, finalistas y retos semanales</p>
                 </div>
                 <button className="text-sm font-mono border-b border-[#ccff00] text-[#ccff00] hover:shadow-[0_0_10px_#ccff00] transition-shadow">VER TODOS &rarr;</button>
             </div>
@@ -118,20 +118,15 @@ export default function Leaderboard({ onJoin }) {
                         </div>
 
                         <div className="p-8 bg-black/40 text-center border-t border-white/5 backdrop-blur-sm">
-                            <p className="text-xs text-gray-500 mb-6 uppercase tracking-[0.2em] font-mono">Misiones Disponibles</p>
-                            <div className="flex flex-wrap justify-center gap-4 mb-8">
-                                <div className="bg-[#111] border border-white/10 px-4 py-3 rounded-lg flex items-center gap-3 hover:border-[#ccff00] transition-colors group cursor-pointer">
-                                    <div className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse group-hover:shadow-[0_0_10px_#ccff00]"></div>
-                                    <span className="text-sm font-bold text-gray-300 group-hover:text-white">Escucha Música <span className="text-[#ccff00] ml-1 font-mono">+50 XP</span></span>
-                                </div>
-                                <div className="bg-[#111] border border-white/10 px-4 py-3 rounded-lg flex items-center gap-3 hover:border-[#00f3ff] transition-colors group cursor-pointer">
-                                    <div className="w-2 h-2 bg-[#00f3ff] rounded-full animate-pulse group-hover:shadow-[0_0_10px_#00f3ff]"></div>
-                                    <span className="text-sm font-bold text-gray-300 group-hover:text-white">Comparte el Club <span className="text-[#00f3ff] ml-1 font-mono">+100 XP</span></span>
-                                </div>
+                            <p className="text-xs text-gray-500 mb-6 uppercase tracking-[0.2em] font-mono">Dinámica de Puntos</p>
+                            <div className="flex flex-col items-center justify-center gap-4 mb-8 max-w-2xl mx-auto">
+                                <p className="text-gray-400 text-sm text-center leading-relaxed">
+                                    Los puntos XP se obtienen participando en <span className="text-[#ccff00] font-bold">dinámicas exclusivas</span> en nuestras redes sociales, eventos en vivo y sorteos especiales.
+                                </p>
+                                <p className="text-gray-500 text-xs text-center font-mono">
+                                    MANTENTE ATENTO A LAS REDES DE EMIL PARA CÓDIGOS Y PREMIOS.
+                                </p>
                             </div>
-                            <button onClick={onJoin} className="bg-white text-black px-8 py-3 font-black text-sm hover:bg-[#ccff00] transition-all hover:scale-105 hover:shadow-[0_0_20px_#ccff00] clip-path-slant">
-                                INICIAR MISIÓN
-                            </button>
                         </div>
                     </>
                 )}
