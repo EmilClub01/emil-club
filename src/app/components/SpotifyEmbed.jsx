@@ -29,17 +29,17 @@ export default function SpotifyEmbed() {
 
                 {/* Gradient Border Container */}
                 <div className="relative group rounded-xl p-[2px] bg-gradient-to-r from-[#ccff00] via-[#00f3ff] to-[#bc13fe] shadow-[0_0_30px_rgba(204,255,0,0.2)] hover:shadow-[0_0_50px_rgba(204,255,0,0.4)] transition-shadow duration-500">
-                    <div className="rounded-xl overflow-hidden bg-black relative z-10">
+                    <div className="rounded-xl overflow-hidden bg-[#121212] relative w-full h-[352px]">
                         <iframe
-                            style={{ borderRadius: '12px' }}
-                            src="https://open.spotify.com/embed/artist/5XeDmt0B3iDEHhLft6kr8a?utm_source=generator&theme=0"
+                            src="https://open.spotify.com/embed/artist/5XeDmt0B3iDEHhLft6kr8a"
                             width="100%"
-                            height="352"
+                            height="100%"
                             frameBorder="0"
                             allowFullScreen
                             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                             title="Spotify Embed"
-                            className="w-full h-[352px] block"
+                            className="absolute top-0 left-0 w-full h-full"
+                            loading="eager"
                         ></iframe>
                     </div>
                 </div>
